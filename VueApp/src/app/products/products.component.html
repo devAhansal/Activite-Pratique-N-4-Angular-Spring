@@ -1,0 +1,28 @@
+<div class="p-3">
+    <div class="card">
+        <div class="card-body">
+            <div>
+                <input [(ngModel)]="keyword" type="text">
+                <button (click)="search()" class="btn btn-outline-success">Searche</button>    
+            </div>
+           {{ keyword}}
+            <table class="table">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </thead>
+                <tbody *ngIf="products">
+                    <tr *ngFor="let item of products">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <button (click)="deleteProduct(item)" class="btn  btn-danger">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
