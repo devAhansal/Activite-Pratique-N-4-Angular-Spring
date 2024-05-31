@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-products',
@@ -13,21 +13,28 @@ export class ProductsComponent implements OnInit {
   constructor() {
 
   }
+
   ngOnInit(): void {
     this.products = [
-      { "id": 1, "name": "computer", "price": 4300 },
-      { "id": 2, "name": "computer", "price": 4300 },
-      { "id": 3, "name": "computer", "price": 4300 }
+      {"id": 1, "name": "computer", "price": 4300, "checked": true},
+      {"id": 2, "name": "computer", "price": 4300, "checked": false},
+      {"id": 3, "name": "computer", "price": 4300, "checked": true}
     ];
   }
+
+  handleCheckProduct(product: any) {
+    product.checked = !product.checked;
+  }
+
   deleteProduct(item: any): void {
     let index = this.products.indexOf(item)
     this.products.splice(index, 1);
   }
+
   search(): void {
     console.log(this.keyword);
     console.log(this.products.filter((item: any) => item.name.includes(this.keyword)));
     this.products = this.products.filter((item: any) => item.name.includes(this.keyword));
-    
+
   }
 }
