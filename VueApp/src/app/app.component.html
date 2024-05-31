@@ -1,17 +1,14 @@
 <div class="p-3">
   <ul class="nav nav-pills">
-    <button (click)="gotoHome()" [ngClass]="currentRoute=='home'?'btn btn-danger ms-2':'btn btn-outline-primary ms-2'" >
-      Home
-      <i class="bi bi-house text-success"></i>
-    </button>
-    <button (click)="gotProducts()" [ngClass]="currentRoute=='products'?'btn btn-danger ms-2':'btn btn-outline-primary ms-2'" >
-      Products
-      <i class="bi bi-arrow-down-up text-success"></i>
-    </button>
-    <button (click)="gotNewProducts()" [ngClass]="currentRoute=='newproducts'?'btn btn-danger ms-2':'btn btn-outline-primary ms-2'" >
-      New Products
-      <i class="bi bi-plus-circle text-success"></i>
-    </button>
+    <li *ngFor="let action of actions">
+      <button
+        (click)="setCurrentAction(action)"
+        routerLink="{{action.route}}"
+        [ngClass]="currentActions==action?'btn btn-danger ms-2':'btn btn-outline-primary ms-2'" >
+        {{ action.title }}
+        <i class="bi bi-{{action.icon}} text-success"></i>
+      </button>
+    </li>
   </ul>
 </div>
 
