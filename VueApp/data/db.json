@@ -11,6 +11,24 @@
       "name": "Computer 2",
       "price": 6000,
       "checked": true
+    },
+    {
+      "id": "6add",
+      "name": "comp1",
+      "price": "123",
+      "checked": true
+    },
+    {
+      "id": "c6e0",
+      "name": "comp1",
+      "price": "123",
+      "checked": true
+    },
+    {
+      "id": "a6cb",
+      "name": "comp1",
+      "price": "123",
+      "checked": true
     }
   ]
 }
