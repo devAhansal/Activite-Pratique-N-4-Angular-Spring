@@ -14,7 +14,7 @@
         <th>Checked</th>
         </thead>
         <tbody *ngIf="products">
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of products$ | async">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
@@ -24,7 +24,9 @@
             </button>
           </td>
           <td>
-            <button (click)="deleteProduct(product)" class="btn  btn-danger">Supprimer</button>
+            <button (click)="handledeleteProduct(product)" class="btn  btn-outline-danger">
+              <i class="bi bi-trash"></i>
+            </button>
           </td>
         </tr>
         </tbody>

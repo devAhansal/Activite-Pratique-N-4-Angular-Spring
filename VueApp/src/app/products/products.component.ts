@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {ProductService} from "../services/product.service";
+import {Product} from "../model/product.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-products',
@@ -11,14 +14,16 @@ export class ProductsComponent implements OnInit {
 
   // It is better to create a Products class.ts
   // to define properties instead of using <any>
-  public products: Array<any> = [];
+  public products: Array<Product> = [];
+
+  public products$!:Observable<Array<Product>>;
 
   public keyword: string = "";
 
   // In Angular, when you add the `private` keyword to a variable in the constructor,
   // it automatically creates a private property for the class and assigns the parameter to that property.
   // This is commonly used for dependency injection.
-  constructor(private http: HttpClient) {
+  constructor(private productService: ProductService) {
 
   }
 
@@ -27,7 +32,8 @@ export class ProductsComponent implements OnInit {
   }
 
   getProducts(): void{
-    this.http.get<Array<any>>('http://localhost:8089/products')
+    this.products$ = this.productService.getProducts();
+    /*this.productService.getProducts()
       .subscribe({
         next: data => {
           this.products = data
@@ -35,11 +41,10 @@ export class ProductsComponent implements OnInit {
         error: err => {
           console.log(err)
         }
-      })
+      })*/
   }
-  handleCheckProduct(product: any) {
-    this.http.patch('http://localhost:8089/products/' + product.id,
-      {checked: !product.checked})
+  handleCheckProduct(product: Product) {
+    this.productService.checkProduct(product)
       .subscribe({
         next: updatedProduct => {
           //product.checked = !product.checked;
@@ -51,9 +56,13 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-  deleteProduct(item: any): void {
-    let index = this.products.indexOf(item)
-    this.products.splice(index, 1);
+  handledeleteProduct(product: Product): void {
+    if(confirm("Etes vous sur ?"))
+     this.productService.deleteProduct(product).subscribe({
+       next: value => {
+         this.getProducts();
+    }
+     })
   }
 
   search(): void {
