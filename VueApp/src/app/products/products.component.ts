@@ -4,6 +4,7 @@ import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {AppStateService} from "../services/app-state.service";
 
 @Component({
   selector: 'app-products',
@@ -11,22 +12,12 @@ import {Router} from "@angular/router";
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
-  totalPages: number = 10;
-  currentPage: number = 1;
-  pageSize: number = 2;
-  // It is better to create a Products class.ts
-  // to define properties instead of using <any>
-  public products: Array<Product> = [];
-
-  public products$!: Observable<Array<Product>>;
-
-  public keyword: string = "";
 
   // In Angular, when you add the `private` keyword to a variable in the constructor,
   // it automatically creates a private property for the class and assigns the parameter to that property.
   // This is commonly used for dependency injection.
-  constructor(private productService: ProductService , private  router: Router) {
-
+  constructor(private productService: ProductService, private router: Router,
+              public appState: AppStateService) {
   }
 
   ngOnInit(): void {
@@ -34,29 +25,44 @@ export class ProductsComponent implements OnInit {
   }
 
   searchProducts(): void {
+    this.appState.setProductState({
+      status:"LOADING",
+    })
     //this.products$ = this.productService.getProducts(1,4);
-    this.productService.searchProducts(this.keyword, this.currentPage, this.pageSize)
+    this.productService.searchProducts(this.appState.productsState.keyword, this.appState.productsState.currentPage, this.appState.productsState.pageSize)
       .subscribe({
         next: (resp) => {
-          this.products = resp.body as Product[];
-          let totalProducts: number = parseInt(resp.headers.get('x-total-count') ?? '10', 10);
-          this.totalPages = Math.floor(totalProducts / this.pageSize);
-          if (totalProducts % this.pageSize != 0) {
-            this.totalPages = this.totalPages + 1;
+          let products = resp.body as Product[];
+          let totalProducts:number=parseInt(resp.headers.get('X-Total-Count')!);
+         // this.appState.productsState.totalProducts=totalProducts;
+         let totalPages = Math.floor(totalProducts / this.appState.productsState.pageSize);
+          if (totalProducts % this.appState.productsState.pageSize != 0) {
+            this.appState.productsState.totalPages = this.appState.productsState.totalPages + 1;
           }
+
+          this.appState.setProductState({
+            products:products,
+            totalProducts:totalProducts,
+            totalPages:totalPages,
+            status:"LOADED",
+          })
         },
         error: err => {
           console.log(err)
+          this.appState.setProductState({
+            status:"ERROR",
+            erroMessage:err
+          });
         }
       });
   }
 
   handleGotoPage(page: number) {
-    this.currentPage=page;
+    this.appState.productsState.currentPage = page;
     this.searchProducts();
   }
 
-  handleCheckProduct(product:Product) {
+  handleCheckProduct(product: Product) {
     this.productService.checkProduct(product)
       .subscribe({
         next: updatedProduct => {
@@ -69,7 +75,7 @@ export class ProductsComponent implements OnInit {
       })
   }
 
-  handledeleteProduct(product:Product): void {
+  handledeleteProduct(product: Product): void {
     if (confirm("Etes vous sur ?"))
       this.productService.deleteProduct(product).subscribe({
         next: value => {

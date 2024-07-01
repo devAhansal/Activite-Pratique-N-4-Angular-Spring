@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-body">
       <div class="input-group">
-        <input [(ngModel)]="keyword" type="text" class="form-control" placeholder="Search...">
+        <input [(ngModel)]="appState.productsState.keyword" type="text" class="form-control" placeholder="Search...">
         <button (click)="searchProducts()" class="btn btn-outline-success">
           <i class="bi bi-search"></i>
         </button>
@@ -15,8 +15,8 @@
         <th>Price</th>
         <th>Checked</th>
         </thead>
-        <tbody *ngIf="products">
-        <tr *ngFor="let product of products">
+        <tbody *ngIf="appState.productsState.products">
+        <tr *ngFor="let product of appState.productsState.products">
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.price }}</td>
@@ -40,9 +40,9 @@
       </table>
 
       <ul class="nav nav-pills">
-        <li *ngFor="let page of [].constructor(this.totalPages);let i=index">
+        <li *ngFor="let page of [].constructor(appState.productsState.totalPages);let i=index">
           <button (click)="handleGotoPage(i+1)"
-                  [ngClass]="currentPage==(i+1)? 'btn btn-success m-1'
+                  [ngClass]="appState.productsState.currentPage==(i+1)? 'btn btn-success m-1'
                   :'btn btn-outline-success m-1'">
             {{(i+1)}}
           </button>
