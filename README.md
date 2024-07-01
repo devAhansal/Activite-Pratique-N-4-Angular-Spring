@@ -1,4 +1,4 @@
-![image](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/c6955d18-168c-4cde-aa8c-fac3ff67c5f5)# Activité Pratique N° 4 - Angular - Spring
+# Activité Pratique N° 4 - Angular - Spring
 
 Ce projet est divisé en plusieurs parties.
 
@@ -140,7 +140,7 @@ Cette partie concerne la centralisation des données de l'application dans un se
 
 #### Utilisation du service app-state dans le composant produit
 ![Utilisation du service app-state dans le composant produit](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/513bce79-b894-46d8-be0d-9dc39e2a4b28)
-
+![image](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/c6955d18-168c-4cde-aa8c-fac3ff67c5f5)
 ### 3. Création d'un nouveau composant dashboard
 
 #### Création du dashboard
