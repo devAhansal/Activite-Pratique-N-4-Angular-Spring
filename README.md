@@ -108,4 +108,56 @@ Ce projet est divisé en plusieurs parties.
 
 ### 6. Ajouter un formulaire pour ajouter un nouveau produit en utilisant FormGroup de ReactiveFormsModule
 
+#### Ajouter formulaire pour nouveau produit
 ![Ajouter formulaire pour nouveau produit](https://github.com/S-AHANSAL/Activite-Pratique-N-4-Angular-Spring/assets/81721069/29a4aa0b-fd74-428c-9951-c6f317bb1675)
+
+### 7. Ajouter un bouton et une route pour l'édition des produits
+
+#### Ajouter bouton d'édition
+![Ajouter bouton d'édition](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/2dc4dd81-e258-4598-bb03-0ae21483add1)
+
+#### Ajouter route de composant d'édition
+![Ajouter route de composant d'édition](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/92a33706-dc3b-4b1c-bda8-e8fd1c9422fe)
+
+#### Fonction de navigation vers la page d'édition
+![Fonction de navigation vers la page d'édition](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/17a607da-5cb0-4432-8183-76dae0a50e2c)
+
+## Partie 3
+Cette partie concerne la centralisation des données de l'application dans un service "app-state", où nous allons stocker l'état de l'application pour faciliter la communication entre les composants dans une hiérarchie de composants.
+
+### 1. Création du service app-state
+
+#### Création du service app-state
+![Création du service app-state](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/8d3d28d5-1c3b-4a52-b6b7-03bf3aee5b56)
+
+#### Service app-state
+![Service app-state](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/11201745-bfec-4798-9ed2-87180c649dad)
+
+### 2. Utilisation du service app-state dans les composants produits
+
+#### Injection du service
+![Injection du service](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/1516d9da-4f39-4f7f-b3cd-484c8f4ee156)
+
+#### Utilisation du service app-state dans le composant produit
+![Utilisation du service app-state dans le composant produit](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/513bce79-b894-46d8-be0d-9dc39e2a4b28)
+![image](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/c6955d18-168c-4cde-aa8c-fac3ff67c5f5)
+### 3. Création d'un nouveau composant dashboard
+
+#### Création du dashboard
+![Création du dashboard](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/58e8ca3d-3a8d-48d2-bc61-6c660c39476f)
+
+#### Composant dashboard avec appState
+![Composant dashboard avec appState](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/60fe6687-1e8f-48bb-b5c2-3ab407c15d17)
+
+#### Interface web avec le dashboard
+![Interface web avec le dashboard](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/b7ce0887-ca9c-4b82-9899-ab87c6325694)
+
+### 4. Bonne pratique : au lieu d'accéder directement à l'état, il est préférable de passer par setProductState
+
+#### Bonne pratique
+![Bonne pratique](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/1d491a9b-2953-4ff2-81cf-eb0aad6d4e9d)
+
+### 5. Ajouter un état de chargement des données et de gestion des erreurs
+
+#### Ajouter les variables state et errorMessage
+![Ajouter les variables state et errorMessage](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/69acccb6-0fd9-4ce0-ad4e-3a3b8ec735b7)
