@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {ProductService} from "../services/product.service";
 import {Product} from "../model/product.model";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-products',
@@ -24,7 +25,7 @@ export class ProductsComponent implements OnInit {
   // In Angular, when you add the `private` keyword to a variable in the constructor,
   // it automatically creates a private property for the class and assigns the parameter to that property.
   // This is commonly used for dependency injection.
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService , private  router: Router) {
 
   }
 
@@ -93,4 +94,7 @@ export class ProductsComponent implements OnInit {
    });*/
 
 
+  handleEdit(product: Product) {
+    this.router.navigateByUrl(`/editProduct/${product.id}`)
+  }
 }
