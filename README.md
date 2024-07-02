@@ -2,6 +2,8 @@
 
 Ce projet est divisé en plusieurs parties.
 
+#Partie 1 et 2
+
 ## Partie 1
 
 ### 1. Création du Projet Angular
@@ -161,3 +163,59 @@ Cette partie concerne la centralisation des données de l'application dans un se
 
 #### Ajouter les variables state et errorMessage
 ![Ajouter les variables state et errorMessage](https://github.com/devAhansal/Activite-Pratique-N-4-Angular-Spring/assets/81721069/69acccb6-0fd9-4ce0-ad4e-3a3b8ec735b7)
+
+#Partie 3
+## Troisième Partie : Spring Angular
+
+### Objectif
+
+Développer une application qui permet de gérer le paiement des étudiants. Chaque étudiant peut effectuer plusieurs paiements.
+
+- Chaque étudiant est défini par : 
+  - id
+  - firstName
+  - lastName
+  - email
+  - filière
+  - photo
+- Chaque paiement est défini par : 
+  - id
+  - code
+  - date
+  - type (CASH, CHECK, TRANSFER)
+  - status (CREATED, VALIDATED, REJECTED)
+  - file (fichier pdf représentant le reçu de paiement)
+
+## A. Développer et Tester la Partie Backend avec Spring
+
+### Étapes
+
+1. **Créer les Entités JPA**
+
+   ```java
+   @Entity
+   @NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString @Builder
+   public class Payment {
+       @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+       private Long id;
+       private LocalDate date;
+       private double amount;
+       private PaymentType type;
+       private PaymentStatus status;
+       private String file;
+       @ManyToOne
+       private Student student;
+   }
+
+   @Entity
+   @NoArgsConstructor @AllArgsConstructor @Getter @Setter @ToString @Builder
+   public class Student {
+       @Id
+       private String id;
+       private String firstName;
+       private String lastName;
+       @Column(unique=true)
+       private String code;
+       private String programId;
+       private String photo;
+   }
